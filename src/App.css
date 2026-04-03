@@ -53,11 +53,19 @@
 }
 
 .hotspot.found {
-  background-color: rgba(0, 0, 0, 0.5);
-  border: 3px solid #facc15;
-  box-shadow: 0 0 15px rgba(250, 204, 21, 0.8);
   pointer-events: none;
   cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hotspot.found::after {
+  content: "✓";
+  color: #10b981;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(16,185,129,0.5);
   animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
