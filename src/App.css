@@ -55,23 +55,25 @@
 .hotspot.found {
   pointer-events: none;
   cursor: default;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .hotspot.found::after {
   content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -85%);
   color: #10b981;
-  font-size: 2.5rem;
+  font-size: 1.6rem;
+  line-height: 0;
   font-weight: bold;
   text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(16,185,129,0.5);
   animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 @keyframes popIn {
-  0% { transform: scale(0.5); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+  0% { transform: translate(-50%, -85%) scale(0.5); opacity: 0; }
+  100% { transform: translate(-50%, -85%) scale(1); opacity: 1; }
 }
 
 @keyframes slideInLeft {
@@ -264,6 +266,7 @@
     flex: none;
     width: 100%;
     padding: 1rem;
+    max-height: 60vh;
   }
   
   .side-panel {
@@ -271,5 +274,57 @@
     width: 100%;
     border-left: none;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+  }
+  
+  .panel-title {
+    font-size: 2rem;
+  }
+  
+  .clues-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .win-title-large {
+    font-size: 3rem;
+  }
+  
+  .win-content p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-area {
+    padding: 0.5rem;
+  }
+  
+  .hotspot.found::after {
+    font-size: 1rem;
+    transform: translate(-50%, -85%);
+  }
+  
+  .panel-title {
+    font-size: 1.5rem;
+  }
+  
+  .clues-grid {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 0.75rem;
+  }
+  
+  .checkmark {
+    font-size: 2rem;
+  }
+  
+  .win-title-large {
+    font-size: 2.2rem;
+  }
+  
+  .replay-btn-large {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
   }
 }
