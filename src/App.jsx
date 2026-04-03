@@ -93,16 +93,19 @@ function App() {
               );
             })}
           </div>
-
-          {isWon && (
-            <div className="win-message">
-              <h2 className="win-title">You Won!</h2>
-              <p>Excellent observation skills. You found all the hidden items!</p>
-              <button className="replay-btn" onClick={() => setFoundItems([])}>Play Again</button>
-            </div>
-          )}
         </div>
       </div>
+
+      {/* WIN STATE: Full Screen Overlay */}
+      {isWon && (
+        <div className="fullscreen-win">
+          <div className="win-content">
+            <h1 className="win-title-large">Happy Easter!</h1>
+            <p>Congratulations, you found all the eggs!</p>
+            <button className="replay-btn-large" onClick={() => setFoundItems([])}>Play Again</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
