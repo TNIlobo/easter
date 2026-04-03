@@ -14,6 +14,7 @@
   align-items: center;
   padding: 2rem;
   box-sizing: border-box;
+  animation: slideInLeft 0.8s ease-out forwards;
 }
 
 .image-wrapper {
@@ -52,10 +53,27 @@
 }
 
 .hotspot.found {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 3px solid #facc15;
+  box-shadow: 0 0 15px rgba(250, 204, 21, 0.8);
   pointer-events: none;
   cursor: default;
-  mix-blend-mode: overlay;
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 /* Right Column Sidebar */
@@ -71,6 +89,7 @@
   flex-direction: column;
   box-sizing: border-box;
   overflow-y: auto;
+  animation: slideInRight 0.8s ease-out forwards;
 }
 
 .panel-content {
@@ -155,44 +174,76 @@
 }
 
 /* Win State Animation & Styles */
-.win-message {
-  padding: 2rem;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  border-radius: 16px;
+.fullscreen-win {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeInOverlay 1s ease-out forwards;
+}
+
+.win-content {
   text-align: center;
-  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: zoomBounce 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.win-title {
-  color: #34d399;
+.win-title-large {
+  font-size: 4.5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #fcd34d, #fbbf24, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* standard property */
   margin-top: 0;
-  margin-bottom: 1rem;
-  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+  text-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
 }
 
-.replay-btn {
-  margin-top: 1.5rem;
-  padding: 0.75rem 1.5rem;
+.win-content p {
+  font-size: 1.5rem;
+  color: #cbd5e1;
+  margin-bottom: 2.5rem;
+}
+
+.replay-btn-large {
+  padding: 1rem 3rem;
+  font-size: 1.25rem;
+  border-radius: 50px;
   background: linear-gradient(135deg, #10b981, #059669);
   color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
   font-weight: bold;
+  border: none;
   cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.4);
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.5);
 }
 
-.replay-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 8px -1px rgba(16, 185, 129, 0.5);
+.replay-btn-large:hover {
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.7);
 }
 
-@keyframes slideUp {
-  0% { transform: translateY(20px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomBounce {
+  0% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 /* Responsive adjustments */
